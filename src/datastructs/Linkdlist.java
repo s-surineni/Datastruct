@@ -15,7 +15,7 @@ public class Linkdlist {
     int data;
     
     Linkdlist head,tail,next,temp;
-    
+    Scanner s1=new Scanner(System.in);
     public Linkdlist(){
         next=null;
     }
@@ -33,12 +33,12 @@ public class Linkdlist {
     public static void main(String[] args){
         Linkdlist ll=new Linkdlist();
         ll.init();
-        ll.insert();
+        ll.giveChoice();
     }
     
     void insert(){
         int lc;
-        Scanner s1=new Scanner(System.in);
+        
         int data;
         System.out.println("enter a value to insert ");
         String ip;
@@ -55,6 +55,15 @@ public class Linkdlist {
             addToLL(data);
             System.out.println("enter a value to insert ");
         }
+    }
+    
+    void insertAt(int val,int pos){
+        int count=0;
+        temp=head;
+        for( ;temp.next!=null && count<pos;count++){
+            
+        }
+        
     }
     
     void addToLL(int data){
@@ -80,26 +89,40 @@ public class Linkdlist {
             System.out.println(" "+temp.data+" ");
             temp=temp.next;
         }
+        System.out.println();
+        System.out.println();
     }
     
-    void tInput(){
-        Scanner s1=new Scanner(System.in);
-        System.out.println("start giving input");
-        int[] Ar=new int[3];
-        for(int i=0;i<3;i++){
-            Ar[i]=s1.nextInt();
-            
+    void giveChoice(){
+        
+        String is="start";
+        while(!is.equals("exit")){
+            System.out.println("Choose the available options");
+            System.out.println();
+            System.out.println("Press");
+            System.out.println();
+            System.out.println("d display the list");
+            System.out.println();
+            System.out.println("i to inset an element");
+            System.out.println();
+            System.out.println("press exit to exit");
+            is=s1.nextLine();
+            char choice=is.charAt(0);
+            switch(choice){
+            case 'd':
+                DisplayLL();
+                break;
+            case 'i':
+                insert();
+                break;
+                
+                
         }
-        Display(Ar);
+        
+        }
+        
     }
     
-    void Display(int[] Arr){
-        System.out.println("Start of Display");
-        for(int trk=0;trk<Arr.length;trk++){
-         
-         System.out.println(Arr[trk]+ " ");
-        }
-        System.out.println("End of Display");
-    }
+    
     
 }
