@@ -57,12 +57,35 @@ public class Linkdlist {
         }
     }
     
-    void insertAt(int val,int pos){
-        int count=0;
+    void insertAt(){
+        System.out.println("insert the value to enter");
+        int val=s1.nextInt();
+        System.out.println("instert the position");
+        
+        int pos=s1.nextInt();
+        int count=1;
+        int tempd;
         temp=head;
+        if(pos==1){
+            temp=new Linkdlist(val, null);
+        }
         for( ;temp.next!=null && count<pos;count++){
+            temp=temp.next;
+        }
+        tempd=temp.data;
+        temp.data=val;
+        for( ; temp.next!=null; ){
+            temp=temp.next;
+            temp.data=temp.data+tempd;
+            tempd=temp.data-tempd;
+            temp.data=temp.data-tempd;
             
         }
+        
+        temp.next=new Linkdlist();
+        temp=temp.next;
+        temp.data=tempd;
+        DisplayLL();
         
     }
     
@@ -105,15 +128,22 @@ public class Linkdlist {
             System.out.println();
             System.out.println("i to inset an element");
             System.out.println();
+            System.out.println("j to inset an element at a position");
+            System.out.println();
             System.out.println("press exit to exit");
             is=s1.nextLine();
             char choice=is.charAt(0);
+            
             switch(choice){
             case 'd':
                 DisplayLL();
                 break;
             case 'i':
                 insert();
+                break;
+                
+            case 'j':
+                insertAt();
                 break;
                 
                 
