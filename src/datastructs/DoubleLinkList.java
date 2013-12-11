@@ -14,17 +14,19 @@ public class DoubleLinkList {
     
 
     int data;
-    DoubleLinkList head, tail, next, temp;
+    DoubleLinkList head, tail, next, temp,prev;
     Scanner s1 = new Scanner(System.in);
     String ip;
 
     public DoubleLinkList() {
         next = null;
+        prev=null;        
     }
 
-    public DoubleLinkList(int data,DoubleLinkList next) {
+    public DoubleLinkList(int data,DoubleLinkList next,DoubleLinkList prev) {
         this.data = data;
         this.next = next;
+        this.prev=prev;
     }
 
     public static void main(String[] args) {
@@ -34,7 +36,7 @@ public class DoubleLinkList {
     }
 
     void init() {
-        head = tail = next = null;
+        head = tail = next = prev=null;
     }
 
     void giveChoice() {
@@ -129,11 +131,10 @@ public class DoubleLinkList {
         int val = Integer.parseInt(s1.nextLine());
         temp = head;
         if (head == null) {
-            head = new DoubleLinkList(val, null);
+            head = new DoubleLinkList(val, null,null);
             tail = head;
         } else {
-            int tempd;
-            tempd = temp.data;
+            int tempd = temp.data;
             temp.data = val;
             for (; temp.next != null;) {
                 temp = temp.next;
@@ -143,7 +144,8 @@ public class DoubleLinkList {
 
             }
 
-            temp.next = new DoubleLinkList(tempd,null);
+            temp.next = new DoubleLinkList(tempd,null,null);
+            temp.next.prev=temp;
             temp = temp.next;
             tail = temp;
 
@@ -173,6 +175,7 @@ public class DoubleLinkList {
         }
 
         temp.next = new DoubleLinkList();
+        temp.next.prev=temp;
         temp = temp.next;
         temp.data = tempd;
         tail = temp;
@@ -183,17 +186,19 @@ public class DoubleLinkList {
         System.out.println("insert the value to enter");
         int val = Integer.parseInt(s1.nextLine());
         temp = tail;
-        temp.next = new DoubleLinkList(val, null);
+        temp.next = new DoubleLinkList(val, null,null);
+        temp.next.prev=temp;
         tail = temp;
         DisplayLL();
     }
 
     void addToLL(int data) {
         if (head == null) {
-            head = new DoubleLinkList(data, null);
+            head = new DoubleLinkList(data, null,null);
             tail = head;
         } else {
             tail.next = new DoubleLinkList();
+            tail.next.prev=tail;
             tail = tail.next;
             tail.data = data;
             tail.next = null;
@@ -247,12 +252,13 @@ public class DoubleLinkList {
         temp = head;
         if (ind == 1) {
             head = head.next;
+            head.prev=null;
         } else {
-            for (int tr = 2; tr < ind; tr++) {
+            for (int tr = 1; tr < ind; tr++) {
                 temp = temp.next;
             }
-            DoubleLinkList temp1 = temp.next;
-            temp.next = temp1.next;
+            temp.prev.next=temp.next;
+            temp.next.prev=temp.prev;
 
         }
         DisplayLL();
@@ -264,12 +270,13 @@ public class DoubleLinkList {
         temp = head;
         if (head.data == val) {
             head = head.next;
+            head.prev=null;
         } else {
-            for (; temp.next.data != val;) {
+            for (; temp.data != val;) {
                 temp = temp.next;
             }
-            DoubleLinkList temp1 = temp.next;
-            temp.next = temp1.next;
+            temp.prev.next=temp.next;
+            temp.next.prev=temp.prev;
 
         }
         DisplayLL();
