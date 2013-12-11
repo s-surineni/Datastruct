@@ -40,11 +40,10 @@ public class Linkdlist {
     void giveChoice() {
         System.out.println();
         System.out.println();
-        String is;
         while (true) {
             System.out.println("Choose the available options");
             System.out.println();
-            System.out.println("Press");
+            System.out.println("Press::");
             System.out.println();
             System.out.println("d display the list");
             System.out.println();
@@ -56,12 +55,12 @@ public class Linkdlist {
             System.out.println();
             System.out.println("press exit to exit");
 
-            is = s1.nextLine();
-            if (is.equals("exit")) {
+            ip = s1.nextLine();
+            if (ip.equals("exit")) {
                 break;
             }
 
-            char choice = is.charAt(0);
+            char choice = ip.charAt(0);
 
             switch (choice) {
                 case 'd':
@@ -83,17 +82,16 @@ public class Linkdlist {
     void insert() {
         System.out.println();
         System.out.println();
-        String ip;
+        
         while (true) {
             System.out.println("enter a value to insert ");
-            System.out.println("enter e to exit");
+            System.out.println("enter exit to exit");
             ip = s1.nextLine();
-            if (ip.equals("e")) {
+            if (ip.equals("exit")) {
                 break;
             }
 
             data = Integer.parseInt(ip);
-            //System.out.println("value in data "+data);
             addToLL(data);
 
         }
@@ -127,8 +125,8 @@ public class Linkdlist {
 
     void atBegin() {
         System.out.println("enter value to insert");
-        ip = s1.nextLine();
-        int val = Integer.parseInt(ip);
+        
+        int val = Integer.parseInt(s1.nextLine());
         temp = head;
         if (head == null) {
             head = new Linkdlist(val, null);
@@ -145,9 +143,8 @@ public class Linkdlist {
 
             }
 
-            temp.next = new Linkdlist();
+            temp.next = new Linkdlist(tempd,null);
             temp = temp.next;
-            temp.data = tempd;
             tail = temp;
 
 
@@ -161,12 +158,8 @@ public class Linkdlist {
         System.out.println("instert the position");
 
         int pos = Integer.parseInt(s1.nextLine());
-
-
         temp = head;
         for (int count = 1; count < pos; count++) {
-
-
             temp = temp.next;
         }
         int tempd = temp.data;
@@ -211,11 +204,17 @@ public class Linkdlist {
     void DisplayLL() {
         System.out.println();
         System.out.println();
-        System.out.println("Values in the list");
-        temp = head;
-        while (temp != null) {
-            System.out.println(" " + temp.data + " ");
-            temp = temp.next;
+        if(head==null){
+            System.out.println("The list is empty");
+        }
+        else{
+            
+            System.out.println("Values in the list");
+            temp = head;
+            while (temp != null) {
+                System.out.println(" " + temp.data + " ");
+                temp = temp.next;
+            }
         }
         System.out.println();
         System.out.println();
