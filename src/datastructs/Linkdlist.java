@@ -230,6 +230,26 @@ public class Linkdlist {
     }
     
     void delete(){
+        while(true){
+            System.out.println("Enter i to delete with index");
+            System.out.println("Enter v to delete with value");
+            System.out.println("Enter exit to exit");
+            ip=s1.nextLine();
+            if(ip.equals("exit"))
+                break;
+            switch (ip.charAt(0))
+                    {
+                case 'i':
+                    deleteWidInd();
+                    break;
+                case 'v':
+                    delWidVal();
+                    break;
+                
+            }
+        }
+    }
+    void deleteWidInd(){
         System.out.println("enter the index of node to delte");
         int ind=Integer.parseInt(s1.nextLine());
         temp=head;
@@ -242,11 +262,29 @@ public class Linkdlist {
         }
         Linkdlist temp1=temp.next;
         temp.next=temp1.next;
+        
         }
         DisplayLL();
     }
     
-    
+    void delWidVal(){
+        System.out.println("enter the value to delete");
+        int val=Integer.parseInt(s1.nextLine());
+        temp=head;
+        if(head.data==val){
+            head=head.next;
+        }
+        else{
+        for( ;temp.next.data!=val;){
+            temp=temp.next;
+        }
+        Linkdlist temp1=temp.next;
+        temp.next=temp1.next;
+        
+        }
+        DisplayLL();
+        
+    }
     
     
 }
