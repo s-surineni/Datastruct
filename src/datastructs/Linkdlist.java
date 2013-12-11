@@ -17,7 +17,7 @@ public class Linkdlist {
     Linkdlist head,tail,next,temp;
     
     Scanner s1=new Scanner(System.in);
-    
+    String ip;
     public Linkdlist(){
         next=null;
     }
@@ -38,9 +38,10 @@ public class Linkdlist {
     }
     
     void giveChoice(){
-        
-        String is="start";
-        while(!is.equals("exit")){
+        System.out.println();
+        System.out.println();
+        String is;
+        while(true){
             System.out.println("Choose the available options");
             System.out.println();
             System.out.println("Press");
@@ -52,7 +53,11 @@ public class Linkdlist {
             System.out.println("j to inset an element at a position");
             System.out.println();
             System.out.println("press exit to exit");
+            
             is=s1.nextLine();
+            if(is.equals("exit"))
+                break;
+            
             char choice=is.charAt(0);
             
             switch(choice){
@@ -76,13 +81,13 @@ public class Linkdlist {
         
         
     void insert(){
-        int lc;
+        System.out.println();
+        System.out.println();
         
-        int data;
-        System.out.println("enter a value to insert ");
         String ip;
         
         while(true){
+            System.out.println("enter a value to insert ");
             System.out.println("enter e to exit");
             ip=s1.nextLine();
             
@@ -90,32 +95,84 @@ public class Linkdlist {
                 break;
             
             data=Integer.parseInt(ip);
-            System.out.println("value in data "+data);
+            //System.out.println("value in data "+data);
             addToLL(data);
-            System.out.println("enter a value to insert ");
+            
         }
     }
     
     void insertAt(){
+        while(true){
+            System.out.println("Enter b to insert at beginning");
+            System.out.println("Enter m to insert in the middle");
+            System.out.println("Enter e to insert at the end");
+            System.out.println("Enter exit to exit");
+            ip=s1.nextLine();
+            if(ip.equals("exit"))
+                break;
+            switch (ip.charAt(0))
+                    {
+                case 'b':
+                    atBegin();
+                    break;
+                case 'm':
+                    atMiddle();
+                    break;
+                case 'e':
+                    atEnd();
+            }
+        }
+        
+        DisplayLL();
+        
+    }
+    
+    void atBegin(){
+        System.out.println("enter value to insert");
+        ip=s1.nextLine();
+        int val=Integer.parseInt(ip);
+        temp=head;
+        if(head==null){
+            head=new Linkdlist(val, null);
+            tail=head;
+        }
+        else{
+            int tempd;
+            tempd=temp.data;
+            temp.data=val;
+            for( ; temp.next!=null; ){
+                temp=temp.next;
+                temp.data=temp.data+tempd;
+                tempd=temp.data-tempd;
+                temp.data=temp.data-tempd;
+            
+                }
+        
+            temp.next=new Linkdlist();
+            temp=temp.next;
+            temp.data=tempd;
+            tail=temp;
+            
+            
+        }
+        DisplayLL();
+    }
+    
+    void atMiddle(){
         System.out.println("insert the value to enter");
         int val=Integer.parseInt(s1.nextLine());
         System.out.println("instert the position");
         
         int pos=Integer.parseInt(s1.nextLine());
         
-        int tempd;
-        temp=head;
-        if(temp==null){
-            head=new Linkdlist(val, null);
-        }
-        else{
+        
+        temp=head;        
             for(int count=1;count<pos ;count++){
             
-                if(count==(pos-1) && (temp.next == null))
-                    break;
+                
                 temp=temp.next;
             }
-            tempd=temp.data;
+            int tempd=temp.data;
             temp.data=val;
             for( ; temp.next!=null; ){
                 temp=temp.next;
@@ -128,42 +185,23 @@ public class Linkdlist {
             temp.next=new Linkdlist();
             temp=temp.next;
             temp.data=tempd;
-            }
-            
-            }
-        /*if(pos==1){
-            head=new Linkdlist(val, null);
-        }
-        else{
-            temp=head;
-            for( ;temp.next!=null && count<pos;count++){
-                temp=temp.next;
-                }
-            tempd=temp.data;
-            temp.data=val;
-            for( ; temp.next!=null; ){
-                temp=temp.next;
-                temp.data=temp.data+tempd;
-                tempd=temp.data-tempd;
-                temp.data=temp.data-tempd;
-            
-                }
-        
-            temp.next=new Linkdlist();
-            temp=temp.next;
-            temp.data=tempd;
-            }*/
-        DisplayLL();
-        
+            tail=temp;
+                 DisplayLL();
     }
     
+    void atEnd(){
+        System.out.println("insert the value to enter");
+        int val=Integer.parseInt(s1.nextLine());
+        temp=tail;
+        temp.next=new Linkdlist(val, null);
+        tail=temp;
+        DisplayLL();
+    }
     void addToLL(int data){
         if(head==null){
-            head=new Linkdlist();
-            head.data=data;
-            head.next=null;
+            head=new Linkdlist(data,null);
             tail=head;
-        }
+            }
         else{
             tail.next=new Linkdlist();
             tail=tail.next;
@@ -174,6 +212,8 @@ public class Linkdlist {
     }
     
     void DisplayLL(){
+        System.out.println();
+        System.out.println();
         System.out.println("Values in the list");
         temp=head;
         while(temp!=null){
@@ -184,6 +224,9 @@ public class Linkdlist {
         System.out.println();
     }
     
+    void delete(){
+        
+    }
     
     
     
