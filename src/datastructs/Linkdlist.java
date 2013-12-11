@@ -52,6 +52,8 @@ public class Linkdlist {
             System.out.println();
             System.out.println("j to inset an element at a position");
             System.out.println();
+            System.out.println("k to delete an element");
+            System.out.println();
             System.out.println("press exit to exit");
             
             is=s1.nextLine();
@@ -70,6 +72,9 @@ public class Linkdlist {
                 
             case 'j':
                 insertAt();
+                break;
+            case 'k':
+                delete();
                 break;
                 
                 
@@ -225,7 +230,20 @@ public class Linkdlist {
     }
     
     void delete(){
-        
+        System.out.println("enter the index of node to delte");
+        int ind=Integer.parseInt(s1.nextLine());
+        temp=head;
+        if(ind==1){
+            head=head.next;
+        }
+        else{
+        for(int tr=2 ;tr<ind;tr++){
+            temp=temp.next;
+        }
+        Linkdlist temp1=temp.next;
+        temp.next=temp1.next;
+        }
+        DisplayLL();
     }
     
     
