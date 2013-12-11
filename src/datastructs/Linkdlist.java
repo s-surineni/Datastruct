@@ -12,18 +12,15 @@ import java.util.Scanner;
  * @author mc13mt49
  */
 public class Linkdlist {
-    int data;
     
+    int data;
     Linkdlist head,tail,next,temp;
+    
     Scanner s1=new Scanner(System.in);
+    
     public Linkdlist(){
         next=null;
     }
-    
-    void init(){
-        head=tail=next=null;
-    }
-    
     
     public Linkdlist(int data,Linkdlist link){
         this.data=data;
@@ -35,6 +32,14 @@ public class Linkdlist {
         ll.init();
         ll.giveChoice();
     }
+    
+    void init(){
+        head=tail=next=null;
+    }
+        
+    
+    
+    
     
     void insert(){
         int lc;
