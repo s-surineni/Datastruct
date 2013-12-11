@@ -102,10 +102,36 @@ public class Linkdlist {
         System.out.println("instert the position");
         
         int pos=Integer.parseInt(s1.nextLine());
-        int count=1;
+        
         int tempd;
-        //temp=head;
-        if(pos==1){
+        temp=head;
+        if(temp==null){
+            head=new Linkdlist(val, null);
+        }
+        else{
+            for(int count=1;count<pos ;count++){
+            
+                if(count==(pos-1) && (temp.next == null))
+                    break;
+                temp=temp.next;
+            }
+            tempd=temp.data;
+            temp.data=val;
+            for( ; temp.next!=null; ){
+                temp=temp.next;
+                temp.data=temp.data+tempd;
+                tempd=temp.data-tempd;
+                temp.data=temp.data-tempd;
+            
+                }
+        
+            temp.next=new Linkdlist();
+            temp=temp.next;
+            temp.data=tempd;
+            }
+            
+            }
+        /*if(pos==1){
             head=new Linkdlist(val, null);
         }
         else{
@@ -126,7 +152,7 @@ public class Linkdlist {
             temp.next=new Linkdlist();
             temp=temp.next;
             temp.data=tempd;
-            }
+            }*/
         DisplayLL();
         
     }
