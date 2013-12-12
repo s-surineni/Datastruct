@@ -4,32 +4,29 @@
  */
 package datastructs;
 
-import com.sun.jndi.toolkit.ctx.HeadTail;
 import java.util.Scanner;
 
 /**
  *
  * @author mc13mt49
  */
-public class Linkdlist {
-
+public class LlForStack {
     int data;
-    Linkdlist head, tail, next, temp;
+    LlForStack head, tail, next, temp;
     Scanner s1 = new Scanner(System.in);
     String ip;
 
-    public Linkdlist() {
-        init();
+    public LlForStack() {
         next = null;
     }
 
-    public Linkdlist(int data, Linkdlist link) {
+    public LlForStack(int data, LlForStack link) {
         this.data = data;
         this.next = link;
     }
 
     public static void main(String[] args) {
-        Linkdlist ll = new Linkdlist();
+        LlForStack ll = new LlForStack();
         ll.init();
         ll.giveChoice();
     }
@@ -97,6 +94,10 @@ public class Linkdlist {
 
         }
     }
+    
+    void insertPush(int val){
+        
+    }
 
     void insertAt() {
         while (true) {
@@ -130,7 +131,7 @@ public class Linkdlist {
         int val = Integer.parseInt(s1.nextLine());
         temp = head;
         if (head == null) {
-            head = new Linkdlist(val, null);
+            head = new LlForStack(val, null);
             tail = head;
         } else {
             int tempd;
@@ -144,7 +145,7 @@ public class Linkdlist {
 
             }
 
-            temp.next = new Linkdlist(tempd,null);
+            temp.next = new LlForStack(tempd,null);
             temp = temp.next;
             tail = temp;
 
@@ -173,7 +174,7 @@ public class Linkdlist {
 
         }
 
-        temp.next = new Linkdlist();
+        temp.next = new LlForStack();
         temp = temp.next;
         temp.data = tempd;
         tail = temp;
@@ -184,17 +185,17 @@ public class Linkdlist {
         System.out.println("insert the value to enter");
         int val = Integer.parseInt(s1.nextLine());
         temp = tail;
-        temp.next = new Linkdlist(val, null);
+        temp.next = new LlForStack(val, null);
         tail = temp;
         DisplayLL();
     }
 
     void addToLL(int data) {
         if (head == null) {
-            head = new Linkdlist(data, null);
+            head = new LlForStack(data, null);
             tail = head;
         } else {
-            tail.next = new Linkdlist();
+            tail.next = new LlForStack();
             tail = tail.next;
             tail.data = data;
             tail.next = null;
@@ -252,7 +253,7 @@ public class Linkdlist {
             for (int tr = 2; tr < ind; tr++) {
                 temp = temp.next;
             }
-            Linkdlist temp1 = temp.next;
+            LlForStack temp1 = temp.next;
             temp.next = temp1.next;
 
         }
@@ -269,15 +270,11 @@ public class Linkdlist {
             for (; temp.next.data != val;) {
                 temp = temp.next;
             }
-            Linkdlist temp1 = temp.next;
+            LlForStack temp1 = temp.next;
             temp.next = temp1.next;
 
         }
         DisplayLL();
 
-    }
-    void delAtBegin(){
-        head=head.next;
-        DisplayLL();
     }
 }
