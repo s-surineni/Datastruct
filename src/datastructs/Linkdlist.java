@@ -277,6 +277,7 @@ public class Linkdlist {
 
     }
     void delAtBegin(){
+        System.out.println("the value popped is "+head.data);
         head=head.next;
         DisplayLL();
     }

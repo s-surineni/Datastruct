@@ -49,6 +49,9 @@ public class Stackim {
     }
     
     public void pop(){
-        stack.delAtBegin();
+        if(stack.head==null)
+            System.out.println("the stack is empty");
+        else
+            stack.delAtBegin();
     }
 }
