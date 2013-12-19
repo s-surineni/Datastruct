@@ -52,7 +52,8 @@ public class Queimp {
     }
     
     void delete(){
-        que=que.next;
+        System.out.println("item delted is "+que.head.data);
+        que.head=que.head.next;
         que.DisplayLL();
     }
 }
